@@ -1,95 +1,122 @@
 import Image from "next/image";
+import myImage from "../../public/image1.webp";
+import myImage2 from "../../public/image2.webp";
+import myImage3 from "../../public/image3.webp";
+import myImage4 from "../../public/image4.webp";
+// import images from '../../public/images.jpeg';
 import styles from "./page.module.css";
 
+async function getData() {
+  const res = await fetch(
+    "https://strapi-store-server.onrender.com/api/products?featured=true"
+  );
+  const data = await res.json();
+  return data;
+}
+
 export default function Home() {
+  const data = getData();
+  console.log(19, "hello");
+  console.log(data);
+
+  function handleClick() {
+    alert("hello");
+  }
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <div className={styles.container}>
+      <div className={styles.top_hero}>
+        <div className={styles.hero_left}>
+          <h1>We are changing the way people shop</h1>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. <br /> Nam
+            earum odit sequi ut eligendi delectus explicabo qui minus aliquid
+            laborum.
+          </p>
+          <div className={styles.btn}>
+            <a href="/products">OUR PRODUCTS</a>
+          </div>
+        </div>
+
+        <div className={styles.pic_info}>
+          <Image
+            className={styles.img}
+            src={myImage}
+            width={320}
+            height={410}
+            alt="Picture"
+            priority={true}
+          />
+          <Image
+            className={styles.img}
+            src={myImage2}
+            width={320}
+            height={410}
+            alt="Picture"
+          />
+          <Image
+            className={styles.img}
+            src={myImage3}
+            width={320}
+            height={410}
+            alt="Picture"
+          />
+          <Image
+            className={styles.img}
+            src={myImage4}
+            width={320}
+            height={410}
+            alt="Picture"
+          />
         </div>
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+      <div className={styles.bottom_hero}>
+        <h2>Featured Products</h2>
+        <hr />
+        <div>
+          <div className={styles.cards}>
+            <a className={styles.card} href="/products">
+              <div className={styles.card_info}>
+                <Image
+                  className={styles.pic_card}
+                  src={myImage}
+                  width={300}
+                  height={200}
+                  alt="pic"
+                />
+                <h2>Avant-Garde Lamp</h2>
+                <span>$179.99</span>
+              </div>
+            </a>
+            <a className={styles.card} href="/products">
+              <div className={styles.card_info}>
+                <Image
+                  className={styles.pic_card}
+                  src={myImage}
+                  width={300}
+                  height={200}
+                  alt="pic"
+                />
+                <h2>Avant-Garde Lamp</h2>
+                <span>$179.99</span>
+              </div>
+            </a>
+            <a className={styles.card} href="/products">
+              <div className={styles.card_info}>
+                <Image
+                  className={styles.pic_card}
+                  src={myImage}
+                  width={300}
+                  height={200}
+                  alt="pic"
+                />
+                <h2>Avant-Garde Lamp</h2>
+                <span>$179.99</span>
+              </div>
+            </a>
+          </div>
+        </div>
       </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+    </div>
   );
 }
